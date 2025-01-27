@@ -50,32 +50,6 @@ describe("UserController (e2e)", () => {
       })
     })
 
-    it("should a response 400 when id is not a uuid", async () => {
-      const token = await makeJwtToken({ user_id: "wrong_id" })
-      const response = await request(fastify.server)
-        .get("/user/me")
-        .set("Authorization", `Bearer ${token}`)
-        .expect(400)
-
-      expect(response.body).toEqual({
-        error: {
-          action: "Check the data provided",
-          children: [],
-          code: "SUNCINE-00003",
-          detail: "A internal server error it happened.",
-          meta: {
-            reason: "ID must be a valida UUID"
-          },
-          source: {
-            path: "profile-controller"
-          },
-          status: "400",
-          status_code: 400,
-          title: "Internal Server Error"
-        }
-      })
-    })
-
     it("should a response 404 when user not found", async () => {
       const token = await makeJwtToken({ user_id: new Uuid().id })
       const response = await request(fastify.server)

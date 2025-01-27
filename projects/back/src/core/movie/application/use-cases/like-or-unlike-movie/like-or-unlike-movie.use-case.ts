@@ -36,8 +36,6 @@ export class LikeOrUnlikeMovieUseCase
   }: LikeOrUnlikeMovieUseCaseInput): Promise<LikeOrUnlikeMovieUseCaseOutput> {
     const movie_api_data = await this.movie_api_http.findMovieById(movie_id)
 
-    console.log("MOVIE", movie_api_data)
-
     if (!movie_api_data) {
       return generateErrorMessage(
         HttpErrorsCode.NOT_FOUND,
