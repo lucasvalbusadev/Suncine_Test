@@ -1,0 +1,18 @@
+version: '3.6'
+
+services:
+  db:
+    image: bitnami/postgresql:latest
+    container_name: suncine_database
+    environment:
+      POSTGRES_USER: suncine_database
+      POSTGRES_PASSWORD: 930a0029225aa4c28b8ef095b679285eaae27078
+      POSTGRES_DB: suncine_database
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5433:5432'
+
+volumes:
+  postgres_data:
+
